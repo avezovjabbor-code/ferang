@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML bo'yicha 20 ta interaktiv test, batafsil tahlil, taymer va maxsus natijalar sertifikati!">
+    <title>HTML Bilimlar Sinovi — 20 ta Interaktiv Test</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --html-orange: #f06529;
+            --html-orange-glow: rgba(240, 101, 41, 0.35);
+            --primary: #f06529;
+            --primary-hover: #e44d26;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.35);
+            --danger: #ef4444;
+            --danger-glow: rgba(239, 68, 68, 0.35);
+            --warning: #f59e0b;
+            --bg-gradient: radial-gradient(circle at 10% 10%, #1c1917 0%, #0c0a09 45%, #050505 100%);
+            --card-bg: rgba(28, 25, 23, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-border-hover: rgba(240, 101, 41, 0.5);
+            --text-primary: #fafaf9;
+            --text-secondary: #a8a29e;
+            --text-muted: #78716c;
+            --code-bg: #18181b;
+            --code-border: #27272a;
+            --glass-shine: rgba(255, 255, 255, 0.04);
+            --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+        }
+
+        body.light-mode {
+            --bg-gradient: radial-gradient(circle at 10% 10%, #fff7ed 0%, #fef3c7 40%, #f4f4f5 100%);
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --card-border: rgba(240, 101, 41, 0.18);
+            --card-border-hover: rgba(240, 101, 41, 0.6);
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --text-muted: #a8a29e;
+            --code-bg: #f5f5f4;
+            --code-border: #e7e5e4;
+            --glass-shine: rgba(255, 255, 255, 0.9);
+            --shadow: 0 20px 40px -15px rgba(240, 101, 41, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* Animated ambient background orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.18;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 14s infinite alternate ease-in-out;
+        }
+        .orb-1 {
+            width: 450px;
+            height: 450px;
+            background: #f06529;
+            top: -100px;
+            right: -100px;
+        }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #3b82f6;
+            bottom: -80px;
+            left: -80px;
+            animation-duration: 18s;
+            animation-delay: -5s;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 30px) scale(1.1); }
+            100% { transform: translate(-30px, 50px) scale(0.95); }
+        }
+
+        /* Header Navbar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(18, 16, 15, 0.7);
+            border-bottom: 1px solid var(--card-border);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .brand-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f06529, #e44d26);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: white;
+            box-shadow: 0 4px 15px var(--html-orange-glow);
+        }
+        .brand-text h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(120deg, #f06529, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .brand-text p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .icon-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+        .icon-btn:hover {
+            border-color: var(--card-border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--glass-shine), transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Welcome / Start Screen */
+        #start-screen {
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        .hero-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(240, 101, 41, 0.15), rgba(228, 77, 38, 0.25));
+            border: 2px solid rgba(240, 101, 41, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px var(--html-orange-glow);
+            animation: pulse-glow 3s infinite alternate;
+        }
+        @keyframes pulse-glow {
+            0% { transform: scale(1); box-shadow: 0 10px 25px var(--html-orange-glow); }
+            100% { transform: scale(1.05); box-shadow: 0 15px 35px rgba(240, 101, 41, 0.5); }
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        .hero-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 34px;
+        }
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .stat-item {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--card-border);
+            padding: 18px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: 0.3s;
+        }
+        body.light-mode .stat-item {
+            background: rgba(255, 255, 255, 0.6);
+        }
+        .stat-item:hover {
+            border-color: var(--html-orange);
+            transform: translateY(-3px);
+        }
+        .stat-item .val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--html-orange);
+            display: block;
+        }
+        .stat-item .lbl {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .input-group {
+            max-width: 420px;
+            margin: 0 auto 28px;
+            text-align: left;
+        }
+        .input-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .styled-input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--card-border);
+            background: rgba(0, 0, 0, 0.25);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.25s;
+        }
+        body.light-mode .styled-input {
+            background: #ffffff;
+            border-color: #d6d3d1;
+        }
+        .styled-input:focus {
+            border-color: var(--html-orange);
+            box-shadow: 0 0 0 4px var(--html-orange-glow);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f06529, #e44d26);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 16px 36px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px var(--html-orange-glow);
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(240, 101, 41, 0.55);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Quiz Active Screen */
+        #quiz-screen {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .quiz-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .question-counter-badge {
+            background: rgba(240, 101, 41, 0.15);
+            border: 1px solid rgba(240, 101, 41, 0.35);
+            color: var(--html-orange);
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer-badge {
+            background: rgba(59, 130, 246, 0.12);
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            color: #60a5fa;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .timer-badge.warning {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--danger);
+            color: var(--danger);
+            animation: blink 1s infinite alternate;
+        }
+        @keyframes blink {
+            from { opacity: 1; }
+            to { opacity: 0.6; }
+        }
+
+        /* Progress Bar */
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+        body.light-mode .progress-track {
+            background: #e7e5e4;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 5%;
+            background: linear-gradient(90deg, #f06529, #fb923c);
+            border-radius: 999px;
+            transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 12px var(--html-orange-glow);
+        }
+
+        /* Question Dots Map */
+        .question-map {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--card-border);
+        }
+        body.light-mode .question-map {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .map-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .map-dot:hover {
+            border-color: var(--html-orange);
+            color: var(--text-primary);
+        }
+        .map-dot.current {
+            border-color: var(--html-orange);
+            background: var(--html-orange);
+            color: white;
+            box-shadow: 0 0 10px var(--html-orange-glow);
+        }
+        .map-dot.answered {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        /* Question Box */
+        .question-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .code-snippet {
+            background: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: var(--radius-sm);
+            padding: 14px 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            color: #38bdf8;
+            margin-bottom: 24px;
+            overflow-x: auto;
+            position: relative;
+        }
+        .code-snippet::before {
+            content: "HTML";
+            position: absolute;
+            top: 6px;
+            right: 12px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* Options */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        .option-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+        body.light-mode .option-card {
+            background: #ffffff;
+            border-color: #e7e5e4;
+        }
+        .option-card:hover {
+            border-color: var(--html-orange);
+            background: rgba(240, 101, 41, 0.05);
+            transform: translateX(4px);
+        }
+        .option-indicator {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1.5px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .option-text {
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.4;
+            flex: 1;
+        }
+        .option-card code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(240, 101, 41, 0.15);
+            color: var(--html-orange);
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+
+        .option-card.selected {
+            border-color: var(--html-orange);
+            background: rgba(240, 101, 41, 0.12);
+            box-shadow: 0 4px 18px var(--html-orange-glow);
+        }
+        .option-card.selected .option-indicator {
+            background: var(--html-orange);
+            border-color: var(--html-orange);
+            color: white;
+        }
+
+        /* Instant Feedback if needed */
+        .explanation-box {
+            display: none;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #93c5fd;
+            animation: fadeIn 0.3s ease;
+        }
+        body.light-mode .explanation-box {
+            color: #1e40af;
+        }
+
+        /* Quiz Footer Controls */
+        .quiz-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding-top: 10px;
+            border-top: 1px solid var(--card-border);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            padding: 14px 24px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-secondary:hover:not(:disabled) {
+            border-color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .btn-secondary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Results Screen */
+        #result-screen {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .result-header {
+            text-align: center;
+            margin-bottom: 34px;
+        }
+        .result-badge {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-badge.great {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 10px 30px var(--success-glow);
+        }
+        .result-badge.good {
+            background: linear-gradient(135deg, #f06529, #d97706);
+            box-shadow: 0 10px 30px var(--html-orange-glow);
+        }
+        .result-badge.need-study {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 10px 30px var(--danger-glow);
+        }
+
+        .result-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .result-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .score-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+        @media (max-width: 768px) {
+            .score-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .score-box {
+            background: rgba(0,0,0,0.15);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 20px 14px;
+            text-align: center;
+        }
+        body.light-mode .score-box {
+            background: #ffffff;
+        }
+        .score-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+        }
+        .score-val.success { color: var(--success); }
+        .score-val.danger { color: var(--danger); }
+        .score-val.orange { color: var(--html-orange); }
+        .score-val.blue { color: var(--accent); }
+        .score-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Certificate section preview */
+        .certificate-container {
+            background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+            border: 3px double #f06529;
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 34px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        body.light-mode .certificate-container {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-color: #f59e0b;
+        }
+        .cert-watermark {
+            position: absolute;
+            font-size: 12rem;
+            font-weight: 900;
+            color: rgba(240, 101, 41, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            pointer-events: none;
+            user-select: none;
+        }
+        .cert-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--html-orange);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .cert-for {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .cert-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-decoration: underline;
+            text-decoration-color: var(--html-orange);
+        }
+        .cert-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin: 0 auto 20px;
+            line-height: 1.5;
+        }
+        .cert-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border-top: 1px dashed var(--card-border);
+            padding-top: 18px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Review answers accordion */
+        .review-section {
+            margin-top: 30px;
+            border-top: 1px solid var(--card-border);
+            padding-top: 28px;
+        }
+        .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .review-header h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .review-item {
+            background: rgba(0,0,0,0.15);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            border-left: 5px solid var(--text-muted);
+        }
+        body.light-mode .review-item {
+            background: #ffffff;
+        }
+        .review-item.correct {
+            border-left-color: var(--success);
+        }
+        .review-item.incorrect {
+            border-left-color: var(--danger);
+        }
+        .review-q-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .review-user-ans {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+        .review-correct-ans {
+            font-size: 0.95rem;
+            color: var(--success);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .review-explanation {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.03);
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 6px;
+        }
+        body.light-mode .review-explanation {
+            background: #f5f5f4;
+        }
+
+        /* Action Buttons */
+        .result-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Print styles for certificate */
+        @media print {
+            header, .result-actions, .review-section, .ambient-orb, .score-cards-grid, .result-header {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .glass-card {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+            }
+            .certificate-container {
+                border: 4px solid #f06529 !important;
+                background: white !important;
+                color: black !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+            }
+            .cert-name {
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glow Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="brand-logo" onclick="location.reload(); return false;">
+            <div class="brand-badge">&lt;/&gt;</div>
+            <div class="brand-text">
+                <h1>HTML MASTER</h1>
+                <p>20 ta Interaktiv Test Platformasi</p>
+            </div>
+        </a>
+        <div class="header-actions">
+            <button class="icon-btn" id="sound-toggle-btn" title="Ovozni yoqish / o'chirish">
+                <span id="sound-icon">🔊</span> Ovoz
+            </button>
+            <button class="icon-btn" id="theme-toggle-btn" title="Rejimni almashtirish">
+                <span id="theme-icon">🌙</span> Rejim
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main>
+        <!-- SCREEN 1: START SCREEN -->
+        <div class="glass-card" id="start-screen">
+            <div class="hero-icon">💻</div>
+            <h2 class="hero-title">HTML Bilimlaringizni Sinang!</h2>
+            <p class="hero-desc">
+                Veb-dasturlashning asosi bo'lgan HTML5 bo'yicha eng muhim tushunchalar, teglar, atributlar va semantika bo'yicha 20 ta sara savol.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="val">20 ta</span>
+                    <span class="lbl">Sara Test Savollari</span>
+                </div>
+                <div class="stat-item">
+                    <span class="val">15 daqiqa</span>
+                    <span class="lbl">Tavsiya Etilgan Vaqt</span>
+                </div>
+                <div class="stat-item">
+                    <span class="val">100%</span>
+                    <span class="lbl">Sertifikat & Tahlil</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="username-input" class="input-label">Ism va Familiyangizni kiriting:</label>
+                <input type="text" id="username-input" class="styled-input" placeholder="Masalan: Sardor Aliyev" maxlength="40">
+            </div>
+
+            <button class="btn-primary" id="start-quiz-btn">
+                <span>Testni Boshlash</span>
+                <span style="font-size: 1.3rem;">🚀</span>
+            </button>
+        </div>
+
+        <!-- SCREEN 2: ACTIVE QUIZ SCREEN -->
+        <div class="glass-card" id="quiz-screen">
+            <div class="quiz-top-bar">
+                <div class="question-counter-badge">
+                    <span>Savol:</span>
+                    <strong id="current-q-index">1</strong> / <strong>20</strong>
+                </div>
+                <div class="timer-badge" id="quiz-timer">
+                    ⏱️ <span id="timer-display">15:00</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-bar"></div>
+            </div>
+
+            <!-- 20 Question Dots Quick Navigation -->
+            <div class="question-map" id="question-map"></div>
+
+            <!-- Question Content -->
+            <div id="question-container">
+                <h3 class="question-title" id="question-text">Savol matni bu yerda chiqadi</h3>
+                
+                <div class="code-snippet" id="question-code" style="display: none;">
+                    <code id="code-content"></code>
+                </div>
+
+                <div class="options-list" id="options-container">
+                    <!-- Options injected via JavaScript -->
+                </div>
+
+                <div class="explanation-box" id="hint-box"></div>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="quiz-controls">
+                <button class="btn-secondary" id="prev-btn" disabled>
+                    ⬅️ Oldingisi
+                </button>
+                <div style="display:flex; gap: 10px;">
+                    <button class="btn-secondary" id="skip-btn">
+                        Keyingisi ➡️
+                    </button>
+                    <button class="btn-primary" id="submit-quiz-btn" style="padding: 12px 28px; font-size: 1rem; display: none;">
+                        Yakunlash 🏁
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: RESULTS SCREEN -->
+        <div class="glass-card" id="result-screen">
+            <div class="result-header">
+                <div class="result-badge" id="res-badge-icon">🏆</div>
+                <h2 class="result-title" id="res-title-text">Ajoyib Natija!</h2>
+                <p class="result-subtitle" id="res-feedback-text">Siz HTML testini muvaffaqiyatli yakunladingiz.</p>
+            </div>
+
+            <!-- Stats score grid -->
+            <div class="score-cards-grid">
+                <div class="score-box">
+                    <span class="score-val blue" id="res-total-score">0 / 20</span>
+                    <span class="score-label">To'plangan Ball</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-val orange" id="res-percentage">0%</span>
+                    <span class="score-label">Ko'rsatkich</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-val success" id="res-correct-count">0</span>
+                    <span class="score-label">To'g'ri Javoblar</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-val danger" id="res-wrong-count">0</span>
+                    <span class="score-label">Xatolar</span>
+                </div>
+            </div>
+
+            <!-- Interactive Certificate -->
+            <div class="certificate-container" id="certificate-box">
+                <div class="cert-watermark">&lt;HTML/&gt;</div>
+                <div class="cert-heading">Muvaffaqiyat Sertifikati</div>
+                <p class="cert-for">Ushbu sertifikat tasdiqlaydi:</p>
+                <div class="cert-name" id="cert-user-name">O'quvchi Ismi</div>
+                <p class="cert-desc" id="cert-summary-text">
+                    HTML5 veb-texnologiyalari bo'yicha 20 ta maxsus test savollaridan iborat sinovni muvaffaqiyatli topshirdi va yuqori natijaga erishdi.
+                </p>
+                <div class="cert-meta">
+                    <div>📅 Sana: <strong id="cert-date">2026</strong></div>
+                    <div>🎯 Ball: <strong id="cert-score-stat">20/20 (100%)</strong></div>
+                    <div>🏅 Daraja: <strong id="cert-grade">HTML Master</strong></div>
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="result-actions">
+                <button class="btn-primary" onclick="window.print()">
+                    🖨️ Sertifikatni Chop Etish / PDF
+                </button>
+                <button class="btn-secondary" id="restart-btn">
+                    🔄 Testni Qayta Boshlash
+                </button>
+                <button class="btn-secondary" id="toggle-review-btn">
+                    📝 Xatolar Tahlilini Ko'rish
+                </button>
+            </div>
+
+            <!-- Detailed Answer Review -->
+            <div class="review-section" id="review-container" style="display: none;">
+                <div class="review-header">
+                    <h3>Savollar Bo'yicha Batafsil Tahlil</h3>
+                    <span style="font-size: 0.9rem; color: var(--text-secondary);">Barcha 20 ta savol va tushuntirishlar</span>
+                </div>
+                <div id="review-list">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Logic & Sound & Confetti JS -->
+    <script>
+        // 20 High-Quality HTML Questions
+        const quizData = [
+            {
+                id: 1,
+                question: "HTML qisqartmasining to'g'ri to'liq ma'nosi nima?",
+                code: null,
+                options: [
+                    "HyperText Markup Language",
+                    "Hyper Transfer Markup Language",
+                    "High Tech Modern Language",
+                    "HyperTool Multi Language"
+                ],
+                correct: 0,
+                explanation: "HTML - HyperText Markup Language (Gipermatnli belgilash tili) bo'lib, veb-sahifalarning tuzilishini yaratish uchun ishlatiladi."
+            },
+            {
+                id: 2,
+                question: "HTML hujjatining eng asosiy va ildiz (root) tegi qaysi hisoblanadi?",
+                code: null,
+                options: [
+                    "<body>",
+                    "<head>",
+                    "<html>",
+                    "<root>"
+                ],
+                correct: 2,
+                explanation: "<html> tegi har qanday HTML hujjatining ildiz (eng yuqori) elementi bo'lib, barcha boshqa elementlar uning ichida joylashadi."
+            },
+            {
+                id: 3,
+                question: "Brauzer tabida (sarlavhasida) ko'rinadigan sahifa nomini belgilash uchun qaysi teg ishlatiladi?",
+                code: null,
+                options: [
+                    "<meta>",
+                    "<title>",
+                    "<h1>",
+                    "<heading>"
+                ],
+                correct: 1,
+                explanation: "<title> tegi sahifaning nomini brauzer oynasi sarlavhasi yoki yorlig'ida (tab) ko'rsatish uchun xizmat qiladi."
+            },
+            {
+                id: 4,
+                question: "HTML da eng katta darajadagi va eng muhim sarlavha tegi qaysi?",
+                code: null,
+                options: [
+                    "<heading>",
+                    "<h6>",
+                    "<h1>",
+                    "<head>"
+                ],
+                correct: 2,
+                explanation: "HTML da sarlavha teglari <h1> dan <h6> gacha bo'lib, <h1> eng yuqori darajadagi (eng katta) asosiy sarlavha hisoblanadi."
+            },
+            {
+                id: 5,
+                question: "Oddiy matn bloki yoki xatboshi (paragraf) yaratish uchun qaysi teg qo'llaniladi?",
+                code: null,
+                options: [
+                    "<paragraph>",
+                    "<p>",
+                    "<text>",
+                    "<span>"
+                ],
+                correct: 1,
+                explanation: "<p> tegi matnli paragraflarni (xatboshilarni) formatlash uchun ishlatiladi."
+            },
+            {
+                id: 6,
+                question: "Boshqa sahifaga havola (link) yaratish uchun qaysi teg va atribut ishlatiladi?",
+                code: "<a href=\"https://google.com\">Google</a>",
+                options: [
+                    "<link src=\"url\">",
+                    "<a href=\"url\">",
+                    "<url path=\"link\">",
+                    "<a link=\"url\">"
+                ],
+                correct: 1,
+                explanation: "Havolalar <a> (anchor) tegi orqali, manzil esa 'href' (hyperlink reference) atributi orqali beriladi."
+            },
+            {
+                id: 7,
+                question: "Veb-sahifaga rasm joylashtirish uchun qaysi teg ishlatiladi?",
+                code: null,
+                options: [
+                    "<image>",
+                    "<img>",
+                    "<pic>",
+                    "<photo>"
+                ],
+                correct: 1,
+                explanation: "<img> tegi sahifaga rasm joylash uchun qo'llaniladi va u yopiluvchi jinsga ega emas (self-closing)."
+            },
+            {
+                id: 8,
+                question: "Rasm yuklanmay qolganda uning o'rniga chiqadigan muqobil matn qaysi atributda beriladi?",
+                code: "<img src=\"rasm.jpg\" alt=\"Tabiat manzarasi\">",
+                options: [
+                    "title",
+                    "description",
+                    "alt",
+                    "caption"
+                ],
+                correct: 2,
+                explanation: "'alt' (alternative text) atributi rasm yuklanmaganda chiqadigan matn va qidiruv tizimlari (SEO) hamda ko'zi ojizlar ekrani o'qigichlari uchun muhimdir."
+            },
+            {
+                id: 9,
+                question: "Tartiblangan, ya'ni raqamlangan ro'yxat (1, 2, 3...) yaratish uchun qaysi teg ishlatiladi?",
+                code: null,
+                options: [
+                    "<ul>",
+                    "<ol>",
+                    "<list>",
+                    "<dl>"
+                ],
+                correct: 1,
+                explanation: "<ol> (Ordered List) raqamlangan ro'yxatni, <ul> (Unordered List) esa markerli (nuqtali) ro'yxatni bildiradi."
+            },
+            {
+                id: 10,
+                question: "Ro'yxat ichidagi har bir elementni belgilash uchun qaysi teg qo'llaniladi?",
+                code: null,
+                options: [
+                    "<li>",
+                    "<item>",
+                    "<element>",
+                    "<ul>"
+                ],
+                correct: 0,
+                explanation: "<li> (List Item) tegi <ol> yoki <ul> ichida joylashgan alohida elementlarni belgilaydi."
+            },
+            {
+                id: 11,
+                question: "Matnni muhim va qalin (bold) qilib ko'rsatuvchi eng to'g'ri semantik teg qaysi?",
+                code: null,
+                options: [
+                    "<bold>",
+                    "<strong>",
+                    "<thick>",
+                    "<dark>"
+                ],
+                correct: 1,
+                explanation: "<b> faqat vizual qalinlashtiradi, ammo <strong> tegi semantik jihatdan 'muhim matn' ekanligini ifodalaydi."
+            },
+            {
+                id: 12,
+                question: "Matnni yangi qatorga tushirish (line break) uchun qaysi teg ishlatiladi?",
+                code: null,
+                options: [
+                    "<break>",
+                    "<lb>",
+                    "<br>",
+                    "<newline>"
+                ],
+                correct: 2,
+                explanation: "<br> (Break) tegi matnda yangi qatordan davom ettirish uchun ishlatiladi va yopiluvchi tegi yo'q."
+            },
+            {
+                id: 13,
+                question: "Jadvalda yangi gorizontal qator (table row) yaratish uchun qaysi teg ishlatiladi?",
+                code: null,
+                options: [
+                    "<td>",
+                    "<th>",
+                    "<tr>",
+                    "<table-row>"
+                ],
+                correct: 2,
+                explanation: "<tr> - Table Row degani bo'lib, jadvalning har bir gorizontal qatori uchun ochiladi."
+            },
+            {
+                id: 14,
+                question: "Jadval qatorida oddiy ma'lumot katakchasi (table data cell) qaysi teg bilan yoziladi?",
+                code: null,
+                options: [
+                    "<td>",
+                    "<th>",
+                    "<cell>",
+                    "<data>"
+                ],
+                correct: 0,
+                explanation: "<td> (Table Data) jadvaldagi oddiy katakchani bildiradi. <th> esa sarlavha katakchasi hisoblanadi."
+            },
+            {
+                id: 15,
+                question: "HTML5 da foydalanuvchidan ma'lumot qabul qilish maydonini (masalan: matn, parol) yaratish uchun qaysi asosiy teg ishlatiladi?",
+                code: null,
+                options: [
+                    "<textfield>",
+                    "<input>",
+                    "<textbox>",
+                    "<enter>"
+                ],
+                correct: 1,
+                explanation: "<input> tegi forma orqali foydalanuvchidan ma'lumotlarni qabul qilishning asosiy tegidir (type='text', type='password', type='email' va hokazo)."
+            },
+            {
+                id: 16,
+                question: "HTML5 da sahifaning asosiy navigatsiya havolalari blokini belgilash uchun qaysi semantik teg ishlatiladi?",
+                code: null,
+                options: [
+                    "<navigation>",
+                    "<menu>",
+                    "<nav>",
+                    "<links>"
+                ],
+                correct: 2,
+                explanation: "<nav> tegi sahifaning asosiy navigatsiya havolalari to'plami uchun ajratilgan zamonaviy semantik tegdir."
+            },
+            {
+                id: 17,
+                question: "Havolani (link) yangi brauzer oynasida (tabida) ochish uchun 'a' tegiga qaysi atribut qiymati beriladi?",
+                code: "<a href=\"site.com\" target=\"...\">Ochish</a>",
+                options: [
+                    "target=\"_new\"",
+                    "target=\"_blank\"",
+                    "target=\"_tab\"",
+                    "window=\"new\""
+                ],
+                correct: 1,
+                explanation: "target=\"_blank\" qiymati havolaning yangi tab yoki oynada ochilishini ta'minlaydi."
+            },
+            {
+                id: 18,
+                question: "HTML hujjatining eng yuqori qismida yoziladigan va HTML5 versiyasini bildiruvchi deklaratsiya qaysi?",
+                code: null,
+                options: [
+                    "<!DOCTYPE html>",
+                    "<html version=\"5.0\">",
+                    "<?xml version=\"html\">",
+                    "<doctype html5>"
+                ],
+                correct: 0,
+                explanation: "<!DOCTYPE html> bu hujjat HTML5 standartida ekanligini brauzerga bildiruvchi rasmiy deklaratsiyadir."
+            },
+            {
+                id: 19,
+                question: "HTML kodida izoh (kommentariya) yozishning to'g'ri sintaksisi qanday?",
+                code: null,
+                options: [
+                    "// Bu izoh",
+                    "/* Bu izoh */",
+                    "<!-- Bu izoh -->",
+                    "# Bu izoh"
+                ],
+                correct: 2,
+                explanation: "HTML da izohlar <!-- va --> belgilari orasida yoziladi va brauzerda ko'rinmaydi."
+            },
+            {
+                id: 20,
+                question: "Tugma yoki input maydoni ustiga sichqoncha kelganda yoki bosilmaydigan qilib qo'yish uchun qaysi atribut qo'llaniladi?",
+                code: "<button disabled>Yuborish</button>",
+                options: [
+                    "hidden",
+                    "disabled",
+                    "inactive",
+                    "readonly"
+                ],
+                correct: 1,
+                explanation: "'disabled' atributi elementni nofaol (bosib bo'lmaydigan) holatga keltiradi."
+            }
+        ];
+
+        // State Management
+        let userName = "Mehmon";
+        let currentIndex = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let timerSeconds = 15 * 60; // 15 daqiqa
+        let timerInterval = null;
+        let soundEnabled = true;
+
+        // Web Audio Synthesizer (Zero-dependency rich sound effects)
+        class SoundFX {
+            constructor() {
+                this.ctx = null;
+            }
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
+                }
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+            click() {
+                if (!soundEnabled) return;
+                this.init();
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, this.ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, this.ctx.currentTime + 0.05);
+                gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.05);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.05);
+            }
+            select() {
+                if (!soundEnabled) return;
+                this.init();
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(440, this.ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(587.33, this.ctx.currentTime + 0.08);
+                gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.08);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.08);
+            }
+            fanfare() {
+                if (!soundEnabled) return;
+                this.init();
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                notes.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.1);
+                    gain.gain.setValueAtTime(0.2, this.ctx.currentTime + idx * 0.1);
+                    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + idx * 0.1 + 0.3);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(this.ctx.currentTime + idx * 0.1);
+                    osc.stop(this.ctx.currentTime + idx * 0.1 + 0.35);
+                });
+            }
+        }
+        const sfx = new SoundFX();
+
+        // Confetti Engine
+        function fireConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ['#f06529', '#e44d26', '#3b82f6', '#10b981', '#fbbf24', '#ec4899', '#ffffff'];
+
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    w: Math.random() * 9 + 4,
+                    h: Math.random() * 9 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vx: (Math.random() - 0.5) * 18,
+                    vy: (Math.random() - 0.5) * 18 - 4,
+                    rot: Math.random() * 360,
+                    vrot: (Math.random() - 0.5) * 8,
+                    alpha: 1
+                });
+            }
+
+            let animId;
+            function update() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let alive = 0;
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.35; // gravity
+                    p.rot += p.vrot;
+                    p.alpha -= 0.007;
+
+                    if (p.alpha > 0) {
+                        alive++;
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate((p.rot * Math.PI) / 180);
+                        ctx.fillStyle = p.color;
+                        ctx.globalAlpha = p.alpha;
+                        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                        ctx.restore();
+                    }
+                });
+
+                if (alive > 0) {
+                    animId = requestAnimationFrame(update);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    cancelAnimationFrame(animId);
+                }
+            }
+            update();
+        }
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const usernameInput = document.getElementById('username-input');
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        const currentQIndex = document.getElementById('current-q-index');
+        const timerDisplay = document.getElementById('timer-display');
+        const progressBar = document.getElementById('progress-bar');
+        const questionMap = document.getElementById('question-map');
+        const questionText = document.getElementById('question-text');
+        const questionCode = document.getElementById('question-code');
+        const codeContent = document.getElementById('code-content');
+        const optionsContainer = document.getElementById('options-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const skipBtn = document.getElementById('skip-btn');
+        const submitQuizBtn = document.getElementById('submit-quiz-btn');
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const soundToggleBtn = document.getElementById('sound-toggle-btn');
+        const soundIcon = document.getElementById('sound-icon');
+
+        // Theme Toggle
+        themeToggleBtn.addEventListener('click', () => {
+            sfx.click();
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                themeIcon.textContent = '☀️';
+            } else {
+                themeIcon.textContent = '🌙';
+            }
+        });
+
+        // Sound Toggle
+        soundToggleBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            soundIcon.textContent = soundEnabled ? '🔊' : '🔇';
+            if (soundEnabled) sfx.click();
+        });
+
+        // Init Map dots
+        function buildQuestionMap() {
+            questionMap.innerHTML = '';
+            quizData.forEach((q, idx) => {
+                const dot = document.createElement('div');
+                dot.className = 'map-dot';
+                dot.id = `map-dot-${idx}`;
+                dot.textContent = idx + 1;
+                dot.addEventListener('click', () => {
+                    sfx.click();
+                    jumpToQuestion(idx);
+                });
+                questionMap.appendChild(dot);
+            });
+            updateMapState();
+        }
+
+        function updateMapState() {
+            quizData.forEach((_, idx) => {
+                const dot = document.getElementById(`map-dot-${idx}`);
+                if (!dot) return;
+                dot.classList.remove('current');
+                if (userAnswers[idx] !== null) {
+                    dot.classList.add('answered');
+                } else {
+                    dot.classList.remove('answered');
+                }
+                if (idx === currentIndex) {
+                    dot.classList.add('current');
+                }
+            });
+        }
+
+        // Render Current Question
+        function renderQuestion() {
+            const current = quizData[currentIndex];
+            currentQIndex.textContent = currentIndex + 1;
+            
+            // Progress
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            const progressPercent = ((currentIndex + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            // Question Text
+            questionText.textContent = `${currentIndex + 1}. ${current.question}`;
+
+            // Optional Code snippet
+            if (current.code) {
+                questionCode.style.display = 'block';
+                codeContent.textContent = current.code;
+            } else {
+                questionCode.style.display = 'none';
+            }
+
+            // Options
+            optionsContainer.innerHTML = '';
+            const optionLetters = ['A', 'B', 'C', 'D'];
+            current.options.forEach((optText, optIdx) => {
+                const card = document.createElement('div');
+                card.className = 'option-card';
+                if (userAnswers[currentIndex] === optIdx) {
+                    card.classList.add('selected');
+                }
+
+                card.innerHTML = `
+                    <div class="option-indicator">${optionLetters[optIdx]}</div>
+                    <div class="option-text">${optText}</div>
+                `;
+
+                card.addEventListener('click', () => {
+                    sfx.select();
+                    userAnswers[currentIndex] = optIdx;
+                    renderQuestion();
+                    updateMapState();
+                    checkIfCanSubmit();
+                });
+
+                optionsContainer.appendChild(card);
+            });
+
+            // Navigation button states
+            prevBtn.disabled = currentIndex === 0;
+
+            if (currentIndex === quizData.length - 1) {
+                skipBtn.style.display = 'none';
+                submitQuizBtn.style.display = 'inline-flex';
+            } else {
+                skipBtn.style.display = 'inline-flex';
+                submitQuizBtn.style.display = 'none';
+            }
+
+            updateMapState();
+        }
+
+        function jumpToQuestion(index) {
+            currentIndex = index;
+            renderQuestion();
+        }
+
+        function checkIfCanSubmit() {
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            if (answeredCount === quizData.length) {
+                submitQuizBtn.style.display = 'inline-flex';
+            }
+        }
+
+        // Start Quiz
+        startQuizBtn.addEventListener('click', () => {
+            sfx.click();
+            const inputVal = usernameInput.value.trim();
+            if (inputVal) {
+                userName = inputVal;
+            }
+            startScreen.style.display = 'none';
+            quizScreen.style.display = 'block';
+            buildQuestionMap();
+            renderQuestion();
+            startTimer();
+        });
+
+        // Prev & Next Buttons
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                sfx.click();
+                currentIndex--;
+                renderQuestion();
+            }
+        });
+
+        skipBtn.addEventListener('click', () => {
+            if (currentIndex < quizData.length - 1) {
+                sfx.click();
+                currentIndex++;
+                renderQuestion();
+            }
+        });
+
+        submitQuizBtn.addEventListener('click', () => {
+            sfx.click();
+            finishQuiz();
+        });
+
+        // Timer
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    finishQuiz();
+                    return;
+                }
+                const mins = Math.floor(timerSeconds / 60);
+                const secs = timerSeconds % 60;
+                timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+                if (timerSeconds < 120) {
+                    document.getElementById('quiz-timer').classList.add('warning');
+                }
+            }, 1000);
+        }
+
+        // Finish & Show Results
+        function finishQuiz() {
+            clearInterval(timerInterval);
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
+
+            // Calculate score
+            let correctCount = 0;
+            quizData.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) {
+                    correctCount++;
+                }
+            });
+
+            const wrongCount = quizData.length - correctCount;
+            const percentage = Math.round((correctCount / quizData.length) * 100);
+
+            // Populate Score Grid
+            document.getElementById('res-total-score').textContent = `${correctCount} / 20`;
+            document.getElementById('res-percentage').textContent = `${percentage}%`;
+            document.getElementById('res-correct-count').textContent = correctCount;
+            document.getElementById('res-wrong-count').textContent = wrongCount;
+
+            // Certificate Details
+            document.getElementById('cert-user-name').textContent = userName;
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('uz-UZ', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('cert-date').textContent = dateStr;
+            document.getElementById('cert-score-stat').textContent = `${correctCount}/20 (${percentage}%)`;
+
+            // Badge & Grade
+            const badgeIcon = document.getElementById('res-badge-icon');
+            const resTitle = document.getElementById('res-title-text');
+            const resFeedback = document.getElementById('res-feedback-text');
+            const certGrade = document.getElementById('cert-grade');
+
+            badgeIcon.className = 'result-badge';
+
+            if (percentage >= 85) {
+                badgeIcon.classList.add('great');
+                badgeIcon.textContent = '🏆';
+                resTitle.textContent = 'Qoyilmaqom Natija!';
+                resFeedback.textContent = `Tabriklaymiz, ${userName}! Siz HTML bo'yicha mustahkam va chuqur bilimlarga egasiz.`;
+                certGrade.textContent = 'HTML Master (A+)';
+                sfx.fanfare();
+                fireConfetti();
+            } else if (percentage >= 60) {
+                badgeIcon.classList.add('good');
+                badgeIcon.textContent = '🌟';
+                resTitle.textContent = 'Yaxshi Natija!';
+                resFeedback.textContent = `Ajoyib harakat, ${userName}! Bir oz takrorlash orqali natijani 100% ga chiqarishingiz mumkin.`;
+                certGrade.textContent = 'HTML Mutaxassis (B)';
+                sfx.fanfare();
+            } else {
+                badgeIcon.classList.add('need-study');
+                badgeIcon.textContent = '📚';
+                resTitle.textContent = 'Yana Bir Bor Mashq Qiling!';
+                resFeedback.textContent = `Xafa bo'lmang, ${userName}! Quyidagi tahlil orqali xatolarni o'rganib chiqib, yana urinib ko'ring.`;
+                certGrade.textContent = 'HTML Ishtirokchi (C)';
+            }
+
+            // Build Review Items
+            buildReviewList();
+        }
+
+        function buildReviewList() {
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+
+            const optionLetters = ['A', 'B', 'C', 'D'];
+
+            quizData.forEach((q, idx) => {
+                const userChoice = userAnswers[idx];
+                const isCorrect = userChoice === q.correct;
+
+                const item = document.createElement('div');
+                item.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+
+                const userText = userChoice !== null ? q.options[userChoice] : "Javob berilmadi";
+                const correctText = q.options[q.correct];
+
+                item.innerHTML = `
+                    <div class="review-q-title">
+                        <span>#${idx + 1}. ${q.question}</span>
+                        <span>${isCorrect ? '✅ To\'g\'ri' : '❌ Xato'}</span>
+                    </div>
+                    <div class="review-user-ans">
+                        <strong>Sizning javobingiz:</strong> 
+                        <span style="color: ${isCorrect ? 'var(--success)' : 'var(--danger)'};">
+                            ${userChoice !== null ? optionLetters[userChoice] + ') ' : ''}${userText}
+                        </span>
+                    </div>
+                    ${!isCorrect ? `
+                    <div class="review-correct-ans">
+                        <strong>To'g'ri javob:</strong> ${optionLetters[q.correct]}) ${correctText}
+                    </div>` : ''}
+                    <div class="review-explanation">
+                        💡 <strong>Izoh:</strong> ${q.explanation}
+                    </div>
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        // Toggle Review section
+        document.getElementById('toggle-review-btn').addEventListener('click', () => {
+            sfx.click();
+            const revSec = document.getElementById('review-container');
+            if (revSec.style.display === 'none' || !revSec.style.display) {
+                revSec.style.display = 'block';
+                revSec.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                revSec.style.display = 'none';
+            }
+        });
+
+        // Restart Quiz
+        document.getElementById('restart-btn').addEventListener('click', () => {
+            sfx.click();
+            currentIndex = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            timerSeconds = 15 * 60;
+            resultScreen.style.display = 'none';
+            startScreen.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
